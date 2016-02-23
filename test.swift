@@ -92,8 +92,8 @@ func createNoteInfo (index: Int) -> noteInfo {
 
 	myNote.midiNoteNumber = (index <= 127 ? index: 127);
 	myNote.noteNumber = getNoteNumberFromMidiValue(myNote.midiNoteNumber);
-	myNote.octave = getOctaveFromNoteAndMidiNote(myNote.midiNoteNumber, myNote.noteNumber);
-	myNote.noteName = getNoteNameFromNoteAndOctave(myNote.noteNumber, myNote.octave);
+	myNote.octave = getOctaveFromNoteAndMidiNote(myNote.midiNoteNumber, noteNumber: myNote.noteNumber);
+	myNote.noteName = getNoteNameFromNoteAndOctave(myNote.noteNumber, octave: myNote.octave);
 
 	return myNote;
 }
@@ -114,8 +114,8 @@ func getNoteNameFromNoteAndOctave (noteNumber: Int, octave: Int) -> String {
 
 func getScaleFromName (theName: String) -> scale {
 
-	/*
-		MODO Swift 2.1
+
+		//MODO Swift 2.1
 
 	if let i = scales.indexOf({$0.name == theName}) {
 		return scales[i];
@@ -126,9 +126,11 @@ func getScaleFromName (theName: String) -> scale {
 		intervals: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 	);
 
-	*/
 
 
+/*
+
+ MODO Swift 1
 	if let found = find(scales.map({ $0.name }), theName) {
 		let obj = scales[found];
 		return obj;
@@ -137,12 +139,19 @@ func getScaleFromName (theName: String) -> scale {
 		name: "Chromatic",
 		intervals: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 	);
+*/
 }
 
 func getScaleNumberFromName (theName: String) -> Int {
-	if let found = find(scales.map({ $0.name }), theName) {
+	if let found = scales.indexOf({$0.name == theName}) {
 		return found;
 	}
+	/*
+		MODO Swift 1
+	 if let found = find(scales.map({ $0.name }), theName) {
+		return found;
+	}
+	*/
 		return 0;
 }
 
@@ -181,13 +190,13 @@ func setScale (scaleN: Int) {
 
 for index in 0..<notes.count {
 
-	//println("vou no indice:  \(index)");
+	//print("vou no indice:  \(index)");
 
 	notes[index] = createNoteInfo(index);
 
 	/*
-	println(notes[index].noteName);
-	println(notes[index].midiNoteNumber);
+	print(notes[index].noteName);
+	print(notes[index].midiNoteNumber);
 	*/
 }
 
@@ -196,19 +205,19 @@ for index in 0..<notes.count {
 
 /*
 for aScale in scales {
-	println(aScale.name);
-	println(aScale.intervals);
+	print(aScale.name);
+	print(aScale.intervals);
 }
 */
 
 
 /*
-println(getScaleFromName("Major").name);
+print(getScaleFromName("Major").name);
 
 
 
-println(getScaleNumberFromName("Major"));
-println(getScaleNumberFromName("Major Pentatonic"));
+print(getScaleNumberFromName("Major"));
+print(getScaleNumberFromName("Major Pentatonic"));
 */
 
 
