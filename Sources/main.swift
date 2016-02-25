@@ -58,8 +58,8 @@ func getScaleFromName (theName: String) -> scale {
 
 		//MODO Swift 2.1
 
-	if let i = scales.indexOf({$0.name == theName}) {
-		return scales[i];
+	if let i = ScaleList.indexOf({$0.name == theName}) {
+		return ScaleList[i];
 	}
 
 	return scale (
@@ -72,8 +72,8 @@ func getScaleFromName (theName: String) -> scale {
 /*
 
  MODO Swift 1
-	if let found = find(scales.map({ $0.name }), theName) {
-		let obj = scales[found];
+	if let found = find(ScaleList.map({ $0.name }), theName) {
+		let obj = ScaleList[found];
 		return obj;
 	}
 		return scale (
@@ -84,12 +84,12 @@ func getScaleFromName (theName: String) -> scale {
 }
 
 func getScaleNumberFromName (theName: String) -> Int {
-	if let found = scales.indexOf({$0.name == theName}) {
+	if let found = ScaleList.indexOf({$0.name == theName}) {
 		return found;
 	}
 	/*
 		MODO Swift 1
-	 if let found = find(scales.map({ $0.name }), theName) {
+	 if let found = find(ScaleList.map({ $0.name }), theName) {
 		return found;
 	}
 	*/
